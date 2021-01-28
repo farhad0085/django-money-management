@@ -4,6 +4,8 @@ from django.db.models import Q
 
 
 class AuthBackend(ModelBackend):
+    """Allow users to login with both username and email"""
+    
     def authenticate(self, request, username=None, password=None, **kwargs):
         
         try:

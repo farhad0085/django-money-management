@@ -1,12 +1,12 @@
 from rest_framework.response import Response
 from common.views import LoggerAPIView
 from .serializers import LoginSerializer, UserSerializer, RegistrationSerializer
-from rest_auth.registration.views import RegisterView
 from django.contrib.auth import authenticate
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import AllowAny
 from rest_framework.authtoken.models import Token
-
+from rest_framework.generics import CreateAPIView
+from django.contrib.auth.models import User
 
 class LoginView(LoggerAPIView):
     """Class based view loggin in user and returning Auth Token."""
@@ -45,8 +45,10 @@ class UserInfo(LoggerAPIView):
         return Response(serializer.data)
 
 
-class RegistrationView(RegisterView):
-    """Registration view for createing new user"""
+class RegistrationView(CreateAPIView):
+    """Registration view for creating new user"""
 
+    queryset = User.objects.all()
+    permission_classes = [AllowAny]
     serializer_class = RegistrationSerializer
 

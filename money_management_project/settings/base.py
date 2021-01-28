@@ -30,20 +30,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # apps
-    'user',
+    'user.apps.UserConfig',
+    'note.apps.NoteConfig',
+    'money.apps.MoneyConfig',
 
     # rest
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
-
-    # auth
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    "rest_auth",
-    "rest_auth.registration",
 
     # other
     "drf_yasg",
@@ -85,6 +79,9 @@ TEMPLATES = [
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "OPTIONS": {
+            "min_length": 6
+        }
     },
 ]
 

@@ -8,7 +8,7 @@ class UserProfile(models.Model):
     """User profile for extending default django User model"""
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_profile")
-    name = models.CharField(max_length=60, blank=True, null=True)
+    full_name = models.CharField(max_length=60, blank=True, null=True)
     phone_number = models.CharField(null=True, max_length=15)
 
     def __str__(self):
