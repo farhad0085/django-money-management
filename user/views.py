@@ -36,6 +36,14 @@ class LoginView(LoggerAPIView):
         return Response(serializer_obj.errors, status=400)
 
 
+class LogoutView(LoggerAPIView):
+    """Logout user and remove token"""
+
+    def post(self, request):
+        Token.objects.get_or_create(user=request.user)[0].delete()
+        return Response({"message": "Logged out"}, 200)
+
+
 class UserInfo(LoggerAPIView):
     """Check the userinfo of a user"""
 
@@ -52,3 +60,17 @@ class RegistrationView(CreateAPIView):
     permission_classes = [AllowAny]
     serializer_class = RegistrationSerializer
 
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = self.perform_create(serializer)
+        token, _ = Token.objects.get_or_create(user=user)
+
+        response_data = UserSerializer(user).data
+        response_data["key"] = token.key
+
+        return Response(response_data, 201)
+
+    def perform_create(self, serializer):
+        user = serializer.save(request=self.request)
+        return user

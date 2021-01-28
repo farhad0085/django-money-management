@@ -8,6 +8,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
+from rest_framework.authtoken.models import Token
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()
@@ -26,7 +27,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        exclude = ['password', 'user_permissions', 'is_staff', 'is_superuser']
+        exclude = ['password', 'user_permissions', 'is_staff', 'is_superuser', 'groups']
 
 
 class RegistrationSerializer(serializers.Serializer):
@@ -39,7 +40,7 @@ class RegistrationSerializer(serializers.Serializer):
 
     def validate(self, attrs):
         if attrs['password1'] != attrs['password2']:
-            raise serializers.ValidationError({"password": "Password didn't match."})
+            raise serializers.ValidationError({"password2": "Password didn't match."})
         return attrs
 
     def create(self, validated_data):
