@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from .serializers import NoteSerializer
+from .models import Note
+from rest_framework.viewsets import ModelViewSet
 
-# Create your views here.
+
+class NoteViewSet(ModelViewSet):
+    queryset = Note.objects.all()
+    serializer_class = NoteSerializer

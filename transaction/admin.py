@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Transaction, Tag, Budget
+from .models import Transaction, Budget
 
 
 class TransactionAdmin(admin.ModelAdmin):
@@ -14,10 +14,6 @@ class BudgetAdmin(admin.ModelAdmin):
     def month(self, obj):
         return obj.updated_utc.strftime("%B, %Y")
 
-class TagAdmin(admin.ModelAdmin):
-    list_display = ['name']
-
 
 admin.site.register(Transaction, TransactionAdmin)
 admin.site.register(Budget, BudgetAdmin)
-admin.site.register(Tag, TagAdmin)

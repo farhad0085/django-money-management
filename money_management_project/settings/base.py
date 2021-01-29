@@ -32,7 +32,8 @@ INSTALLED_APPS = [
     # apps
     'user.apps.UserConfig',
     'note.apps.NoteConfig',
-    'money.apps.MoneyConfig',
+    'transaction.apps.TransactionConfig',
+    'tag.apps.TagConfig',
 
     # rest
     'rest_framework',
