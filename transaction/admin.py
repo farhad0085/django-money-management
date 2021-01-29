@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Transaction, Budget
+from .models import Transaction
 
 
 class TransactionAdmin(admin.ModelAdmin):
@@ -8,12 +8,5 @@ class TransactionAdmin(admin.ModelAdmin):
     def short_note(self, obj):
         return obj.body[:30]
 
-class BudgetAdmin(admin.ModelAdmin):
-    list_display = ['user', 'amount', 'month', 'created_utc', 'updated_utc']
-
-    def month(self, obj):
-        return obj.updated_utc.strftime("%B, %Y")
-
 
 admin.site.register(Transaction, TransactionAdmin)
-admin.site.register(Budget, BudgetAdmin)

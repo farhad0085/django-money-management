@@ -20,13 +20,3 @@ class Transaction(TrackingModel):
 
     def __str__(self):
         return self.user.username
-
-
-class Budget(TrackingModel):
-    """Model for budget for each month"""
-    
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="budgets")
-    amount = models.FloatField(default=0)
-
-    def __str__(self):
-        return self.user.username
