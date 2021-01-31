@@ -1,0 +1,11 @@
+// auth action types
+// user
+export const USER_LOGGED_IN = "USER_LOGGED_IN";
+export const USER_LOGIN_ERROR = "USER_LOGIN_ERROR";
+export const USER_REGISTERED = "USER_REGISTERED";
+export const USER_REGISTER_ERROR = "USER_REGISTER_ERROR";
+export const USER_LOGGED_OUT = "USER_LOGGED_OUT";
+export const USER_LOGOUT_ERROR = "USER_LOGOUT_ERROR";
+export const USER_INFO_LOADED = "USER_INFO_LOADED";
+export const USER_INFO_LOAD_ERROR = "USER_INFO_LOAD_ERROR";
+export const AUTH_LOADING = "AUTH_LOADING";
