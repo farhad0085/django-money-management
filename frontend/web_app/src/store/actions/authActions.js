@@ -74,6 +74,7 @@ export const loadUserInfo = () => (dispatch) => {
     .get("/auth/user/me/", { headers: getHeaders() })
     .then((res) => {
       dispatch({ type: Types.AUTH_LOADING, payload: false });
+      dispatch({ type: Types.USER_LOGGED_IN, payload: res.data });
     })
     .catch((error) => {
       console.log(error.response);

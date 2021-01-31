@@ -10,6 +10,14 @@ const initialState = {
 
 function authReducer(state = initialState, action) {
   switch (action.type) {
+    case Types.USER_LOGGED_IN: {
+      return {
+        ...state,
+        isAuthenticated: true,
+        loginErrors: {},
+        user: action.payload ? action.payload : {},
+      };
+    }
     case Types.AUTH_LOADING: {
       return {
         ...state,
@@ -28,8 +36,9 @@ function authReducer(state = initialState, action) {
         logoutErrors: action.payload,
       };
     }
-    
-    default: return state;
+
+    default:
+      return state;
   }
 }
 

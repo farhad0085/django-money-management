@@ -1,12 +1,16 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { logout } from '../store/actions/authActions'
 
-const DashboardPage = () => {
-     
-    const auth = useSelector(state => state.auth)
+const DashboardPage = ({ history }) => {
+
+    const dispatch = useDispatch()
 
     return (
-        <h1>Dashboard Page</h1>
+        <div>
+            <button onClick={() => dispatch(logout(history))}>Logout</button>
+            <h1>Dashboard Page</h1>
+        </div>
     )
 
 }
