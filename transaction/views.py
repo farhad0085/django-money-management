@@ -10,6 +10,9 @@ class TransactionViewSet(ModelViewSet):
     queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
 
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)
+
 
 class TransactionData(LoggerAPIView):
     """Get transaction data for current month or a date range"""

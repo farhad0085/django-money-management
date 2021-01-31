@@ -3,7 +3,8 @@ import * as Types from '../actions/actionTypes'
 const initialState = {
     loading: false,
     transactionCreatedData: {},
-    transactionCreateErrors: {}
+    transactionCreateErrors: {},
+    transactions: []
 }
 
 function transactionReducer(state = initialState, action) {
@@ -18,6 +19,12 @@ function transactionReducer(state = initialState, action) {
             return {
                 ...state,
                 transactionCreateErrors: action.payload
+            }
+        }
+        case Types.TRANSACTION_LOADED: {
+            return {
+                ...state,
+                transactions: action.payload
             }
         }
         default: return state

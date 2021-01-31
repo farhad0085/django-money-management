@@ -4,7 +4,7 @@ import LayoutContainer from '../../components/layouts/LayoutContainer'
 import { createTransaction } from '../../store/actions/transactionActions'
 
 
-const CreateTransaction = () => {
+const CreateTransaction = ({ history }) => {
 
     const dispatch = useDispatch()
     const transaction = useSelector(state => state.transaction)
@@ -19,7 +19,7 @@ const CreateTransaction = () => {
     const submitHandler = event => {
         event.preventDefault()
         const data = { title, body, amount, tags, transaction_type: type }
-        dispatch(createTransaction(data))
+        dispatch(createTransaction(data, history))
     }
 
     return (
