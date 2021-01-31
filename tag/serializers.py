@@ -11,7 +11,7 @@ class TagSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         # check if tag exists or not
-        tag = Tag.objects.filter(name=validated_data['name']).first()
+        tag = Tag.objects.filter(name=validated_data['name'], created_by=self.context['request'].user).first()
         
         # if tag not exist, create one
         if not tag:
