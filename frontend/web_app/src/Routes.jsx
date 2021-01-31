@@ -5,6 +5,8 @@ import NotFound from "./pages/NotFound";
 import HomePage from "./pages/HomePage";
 import DashboardPage from "./pages/DashboardPage";
 import LoginPage from "./pages/auth/LoginPage";
+import Transactions from "./pages/transactions/Transactions";
+import CreateTransaction from "./pages/transactions/CreateTransaction";
 
 
 const Routes = () => {
@@ -12,6 +14,10 @@ const Routes = () => {
         <Switch>
             <Route path="/" exact component={HomePage} />
             <PrivateRoute path="/dashboard" component={DashboardPage} />
+
+            {/* transactions */}
+            <PrivateRoute path="/transactions/create" component={CreateTransaction} />
+            <PrivateRoute path="/transactions" component={Transactions} />
 
             {/* auth routes */}
             <GuestRoute path="/login" component={LoginPage} />

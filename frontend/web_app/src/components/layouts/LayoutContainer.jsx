@@ -1,8 +1,11 @@
 import React from "react";
+import TopNavigation from "../navigations/TopNavigation";
 
-const Layout = ({ children }) => {
+
+const LayoutContainer = ({ children }) => {
     return (
         <div>
+            <TopNavigation />
             <div>
                 {children}
             </div>
@@ -10,4 +13,4 @@ const Layout = ({ children }) => {
     );
 };
 
-export default Layout;
+export default LayoutContainer;

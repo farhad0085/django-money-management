@@ -18,46 +18,32 @@ const SignIn = ({ history }) => {
     return (
         <div>
             <div>
-                <div>
-                    <div
-                        style={{
-                            display: "flex",
-                            width: "100%",
-                            height: "100%",
-                            alignItems: "center",
-                            justifyContent: "center",
-                        }}
-                    >
-                        <div>
-                            <h2>
-                                Login to you dashboard
-                            </h2>
-                        </div>
-                        <div>
-                            <form onSubmit={submitHandler}>
-                                <div>
-                                    <input
-                                        type="text"
-                                        name="username"
-                                        value={username}
-                                        onChange={e => setUsername(e.target.value)}
-                                    />
-                                </div>
-                                <div>
-                                    <input
-                                        type="password"
-                                        name="password"
-                                        value={password}
-                                        onChange={e => setPassword(e.target.value)}
-                                    />
-                                </div>
-                                <button type="submit" disabled={auth.loading}>
-                                    <p>Login</p>
-                                </button>
-                            </form>
-                        </div>
+                <h2>
+                    Login to you dashboard
+                </h2>
+            </div>
+            <div>
+                <form onSubmit={submitHandler}>
+                    <div>
+                        <input
+                            type="text"
+                            name="username"
+                            value={username}
+                            onChange={e => setUsername(e.target.value)}
+                        />
                     </div>
-                </div>
+                    <div>
+                        <input
+                            type="password"
+                            name="password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                        />
+                    </div>
+                    <button type="submit" disabled={auth.loading}>
+                        {auth.loading ? "Logging in..." : "Login"}
+                    </button>
+                </form>
             </div>
         </div>
     );
