@@ -1,0 +1,12 @@
+{
+  "name": "money_management",
+  "displayName": "money_management",
+  "expo": {
+    "name": "money_management",
+    "slug": "money_management",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
