@@ -2,16 +2,15 @@ from rest_framework.response import Response
 from common.views import LoggerAPIView
 from .serializers import LoginSerializer, UserSerializer, RegistrationSerializer
 from django.contrib.auth import authenticate
-from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import AllowAny
 from rest_framework.authtoken.models import Token
 from rest_framework.generics import CreateAPIView
 from django.contrib.auth.models import User
 
+
 class LoginView(LoggerAPIView):
     """Class based view loggin in user and returning Auth Token."""
 
-    authentication_classes = [TokenAuthentication]
     permission_classes = [AllowAny]
 
     def post(self, request, format=None):

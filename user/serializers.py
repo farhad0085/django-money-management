@@ -55,6 +55,7 @@ class RegistrationSerializer(serializers.Serializer):
 
     def custom_signup(self, user):
         user.user_profile.phone_number = self.validated_data.get('phone', '')
+        user.user_profile.full_name = self.validated_data.get('full_name', '')
         user.save()
 
 
