@@ -4,6 +4,7 @@ import LayoutContainer from '../../components/layouts/LayoutContainer'
 import { createTransaction } from '../../store/actions/transactionActions'
 import { createUUID } from '../../utils'
 import currencies from '../../utils/currencies'
+import styles from './styles.module.css'
 
 
 const CreateTransaction = ({ history }) => {
@@ -12,11 +13,11 @@ const CreateTransaction = ({ history }) => {
     const transaction = useSelector(state => state.transaction)
     const auth = useSelector(state => state.auth)
 
-    const [amount, setAmount] = useState(0)
+    const [amount, setAmount] = useState()
     const [title, setTitle] = useState("")
     const [body, setBody] = useState("")
     const [tags, setTags] = useState("")
-    const [type, setType] = useState(1)
+    const [type, setType] = useState("spend")
     const [currency, setCurrency] = useState(auth.user.user_profile.currency)
 
 
@@ -28,60 +29,74 @@ const CreateTransaction = ({ history }) => {
 
     return (
         <LayoutContainer>
-            <h1>Create Transaction</h1>
-            <form onSubmit={submitHandler}>
-                <div>
-                    <select
-                        value={type}
-                        onChange={e => setType(e.target.value)}
-                    >
-                        <option value={0}>Earn</option>
-                        <option value={1}>Spend</option>
-                    </select>
-                </div>
-                <div>
-                    <input
-                        type="text"
-                        value={title}
-                        placeholder="Title"
-                        onChange={e => setTitle(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <input
-                        type="number"
-                        value={amount}
-                        placeholder="Amount"
-                        onChange={e => setAmount(e.target.value)}
-                    />
-                    <select
-                        value={currency}
-                        onChange={e => setCurrency(e.target.value)}
-                    >
-                        {currencies.map(currency => <option key={createUUID()} value={currency[0]}>{currency[1]}</option>)}
-                    </select>
-                </div>
-                <div>
-                    <textarea
-                        value={body}
-                        placeholder="Short description"
-                        onChange={e => setBody(e.target.value)}
-                    />
-                </div>
-                
-                <div>
-                    <input
-                        type="text"
-                        value={tags}
-                        placeholder="Tags (Comma seperated)"
-                        onChange={e => setTags(e.target.value)}
-                    />
-                </div>
+            <div className={styles.transactionContainer}>
+                <h2 className={styles.transactionHeading}>Create Transaction</h2>
+                <form onSubmit={submitHandler}>
+                    <div className={styles.transactionInputDiv}>
+                        <select
+                            className={styles.transactionInput}
+                            value={type}
+                            onChange={e => setType(e.target.value)}
+                        >
+                            <option value="spend">Spend</option>
+                            <option value="earn">Earn</option>
+                        </select>
+                        {transaction.transactionCreateErrors.transaction_type}
+                    </div>
+                    <div className={styles.transactionInputDiv}>
+                        <input
+                            className={styles.transactionInput}
+                            type="text"
+                            value={title}
+                            placeholder="Title"
+                            onChange={e => setTitle(e.target.value)}
+                        />
+                        {transaction.transactionCreateErrors.title}
+                    </div>
+                    <div className={styles.transactionInputDiv}>
+                        <input
+                            className={styles.transactionInput}
+                            type="number"
+                            value={amount}
+                            placeholder="Amount"
+                            onChange={e => setAmount(e.target.value)}
+                        />
+                        <select
+                            className={styles.transactionInput}
+                            value={currency}
+                            onChange={e => setCurrency(e.target.value)}
+                        >
+                            {currencies.map(currency => <option key={createUUID()} value={currency[0]}>{currency[1]}</option>)}
+                        </select>
+                        {transaction.transactionCreateErrors.amount}
+                    </div>
+                    <div className={styles.transactionInputDiv}>
+                        <textarea
+                            className={styles.transactionTextarea}
+                            value={body}
+                            placeholder="Short description"
+                            onChange={e => setBody(e.target.value)}
+                        />
+                        {transaction.transactionCreateErrors.body}
+                    </div>
 
-                <button type="submit" disabled={transaction.loading}>
-                    {transaction.loading ? "Saving..." : "Save"}
-                </button>
-            </form>
+                    <div className={styles.transactionInputDiv}>
+                        <input
+                            className={styles.transactionInput}
+                            type="text"
+                            value={tags}
+                            placeholder="Tags (Comma seperated)"
+                            onChange={e => setTags(e.target.value)}
+                        />
+                        {transaction.transactionCreateErrors.tags}
+                    </div>
+
+                    <button className={styles.createTransactionButton} type="submit" disabled={transaction.loading}>
+                        {transaction.loading ? "Saving..." : "Save"}
+                    </button>
+                </form>
+                {Object.keys(transaction.transactionCreateErrors).length > 0 && "Error saving the transaction."}
+            </div>
         </LayoutContainer>
     )
 

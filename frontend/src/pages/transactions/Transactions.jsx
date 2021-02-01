@@ -12,8 +12,6 @@ const Transactions = () => {
     const dispatch = useDispatch()
     const transaction = useSelector(state => state.transaction)
 
-    console.log(transaction);
-
     useEffect(() => {
         dispatch(getAllTransactions())
         // eslint-disable-next-line
@@ -21,10 +19,12 @@ const Transactions = () => {
 
     return (
         <LayoutContainer>
-            <Link to="/transactions/create">Create Transaction</Link>
-            <ul className={styles.transactionList}>
-                {transaction.transactions.map(transaction => <Transaction key={transaction.id} transaction={transaction} />)}
-            </ul>
+            <div className={styles.transactionContainer}>
+                <Link className={styles.createTransactionLink} to="/transactions/create">Create Transaction</Link>
+                <ul className={styles.transactionList}>
+                    {transaction.transactions.map(transaction => <Transaction key={transaction.id} transaction={transaction} />)}
+                </ul>
+            </div>
         </LayoutContainer>
     )
 

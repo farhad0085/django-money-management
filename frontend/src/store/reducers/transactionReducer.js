@@ -27,6 +27,12 @@ function transactionReducer(state = initialState, action) {
                 transactions: action.payload
             }
         }
+        case Types.TRANSACTION_LOADING: {
+            return {
+                ...state,
+                loading: action.payload
+            }
+        }
         default: return state
     }
 }

@@ -24,7 +24,11 @@ export function getTagsList(rawTags){
     const tags = rawTags.split(",")
 
     const tagsData = []
-    tags.map(tag => tagsData.push({ name: tag.trim() }))
-    
+    for(let i = 0; i < tags.length; i++){
+        if (tags[i].trim()){
+            tagsData.push({ name: tags[i].trim() })
+        }
+    }
+
     return tagsData
 }

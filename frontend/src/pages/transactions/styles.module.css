@@ -1,10 +1,25 @@
+/* transactions page */
+
+.transactionContainer {
+    margin: 0 10%;
+}
+
+.createTransactionLink {
+    background: blue;
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
 .transactionList {
     justify-content: center;
+    margin-top: 20px;
 }
 
 .transactionItem {
     color: white;
-    margin: 2px 10%;
+    margin: 2px 0px;
     border-radius: 5px;
     padding: 10px 10px;
 }
@@ -25,4 +40,34 @@
     text-align: right;
     float: right;
     font-size: inherit;
+}
+
+/* create transaction page */
+
+.transactionHeading {
+    font-size: 32px;
+}
+
+.createTransactionButton {
+    background: blue;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 5px;
+    border: none;
+}
+
+.transactionInputDiv {
+    margin: 5px 0px;
+}
+
+.transactionInput {
+    padding: 6px 10px;
+    color:rgb(20, 19, 19)
+}
+
+.transactionTextarea{
+    padding: 6px 10px;
+    height: 100px;
+    width: 300px;
+    color:rgb(20, 19, 19)
 }
