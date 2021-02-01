@@ -1,7 +1,6 @@
 from transaction.validators import DateRangeValidator
 from transaction.models import Transaction
 from rest_framework import serializers
-from tag.models import Tag
 
 class TransactionSerializer(serializers.ModelSerializer):
     
@@ -17,7 +16,8 @@ class TransactionSerializer(serializers.ModelSerializer):
             title=validated_data.get('title'),
             body=validated_data.get('body', validated_data.get('title')),
             amount=validated_data.get("amount"),
-            transaction_type=validated_data.get("transaction_type")
+            transaction_type=validated_data.get("transaction_type"),
+            currency=validated_data.get("currency")
         )
 
         for tag in validated_data.get('tags', []):

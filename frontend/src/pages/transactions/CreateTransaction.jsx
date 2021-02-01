@@ -2,23 +2,27 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import LayoutContainer from '../../components/layouts/LayoutContainer'
 import { createTransaction } from '../../store/actions/transactionActions'
+import { createUUID } from '../../utils'
+import currencies from '../../utils/currencies'
 
 
 const CreateTransaction = ({ history }) => {
 
     const dispatch = useDispatch()
     const transaction = useSelector(state => state.transaction)
+    const auth = useSelector(state => state.auth)
 
     const [amount, setAmount] = useState(0)
     const [title, setTitle] = useState("")
     const [body, setBody] = useState("")
     const [tags, setTags] = useState("")
     const [type, setType] = useState(1)
+    const [currency, setCurrency] = useState(auth.user.user_profile.currency)
 
 
     const submitHandler = event => {
         event.preventDefault()
-        const data = { title, body, amount, tags, transaction_type: type }
+        const data = { title, body, amount, tags, transaction_type: type, currency }
         dispatch(createTransaction(data, history))
     }
 
@@ -26,6 +30,15 @@ const CreateTransaction = ({ history }) => {
         <LayoutContainer>
             <h1>Create Transaction</h1>
             <form onSubmit={submitHandler}>
+                <div>
+                    <select
+                        value={type}
+                        onChange={e => setType(e.target.value)}
+                    >
+                        <option value={0}>Earn</option>
+                        <option value={1}>Spend</option>
+                    </select>
+                </div>
                 <div>
                     <input
                         type="text"
@@ -41,6 +54,12 @@ const CreateTransaction = ({ history }) => {
                         placeholder="Amount"
                         onChange={e => setAmount(e.target.value)}
                     />
+                    <select
+                        value={currency}
+                        onChange={e => setCurrency(e.target.value)}
+                    >
+                        {currencies.map(currency => <option key={createUUID()} value={currency[0]}>{currency[1]}</option>)}
+                    </select>
                 </div>
                 <div>
                     <textarea
@@ -49,15 +68,7 @@ const CreateTransaction = ({ history }) => {
                         onChange={e => setBody(e.target.value)}
                     />
                 </div>
-                <div>
-                    <select
-                        value={type}
-                        onChange={e => setType(e.target.value)}
-                    >
-                        <option value={0}>Earn</option>
-                        <option value={1}>Spend</option>
-                    </select>
-                </div>
+                
                 <div>
                     <input
                         type="text"

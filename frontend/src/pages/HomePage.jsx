@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import LayoutContainer from "../components/layouts/LayoutContainer";
 import { useSelector } from 'react-redux'
-
+import styles from './home.module.css'
 
 const HomePage = () => {
 
@@ -10,7 +10,7 @@ const HomePage = () => {
 
     return (
         <LayoutContainer>
-            <h1>Home page</h1>
+            <h1 className={styles.title}>Home page</h1>
             {auth.isAuthenticated ? (
                 <Link to="/dashboard">Go to dashboard</Link>
             ) : (

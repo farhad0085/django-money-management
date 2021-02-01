@@ -1,0 +1,18 @@
+.navBar {
+    background-color: black;
+    color: white;
+    padding: 20px 30px;
+}
+
+.navLink {
+    color: white;
+    margin-right: 5px;
+    text-decoration: none;
+}
+
+.logoutButton {
+    color: white;
+    border: none;
+    cursor: pointer;
+    background: none;
+}

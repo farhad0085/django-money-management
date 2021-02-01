@@ -1,0 +1,28 @@
+.transactionList {
+    justify-content: center;
+}
+
+.transactionItem {
+    color: white;
+    margin: 2px 10%;
+    border-radius: 5px;
+    padding: 10px 10px;
+}
+
+.transactionItem.spend{
+    background-color: rgb(207, 84, 84);
+}
+
+.transactionItem.earn{
+    background-color: rgb(56, 139, 56);
+}
+
+.transactionTitle {
+    font-size: 30px;
+}
+
+.amount {
+    text-align: right;
+    float: right;
+    font-size: inherit;
+}

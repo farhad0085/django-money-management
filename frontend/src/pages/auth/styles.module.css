@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.signInContainer {
+    background-color: rgb(77, 51, 224);
+    height: 100vh;
+}
+
+.signInBox {
+    text-align: center;
+}
+
+.loginHeader {
+    color: white;
+    font-size: 36px;
+}
+
+.loginButton {
+    padding: 10px 30px;
+    color: rgb(20, 19, 19);
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(251, 252, 252);
+}
+
+.loginInput {
+    padding: 6px 10px;
+    color:rgb(20, 19, 19)
+}

@@ -73,6 +73,7 @@ export const loadUserInfo = () => (dispatch) => {
   axios
     .get("/auth/user/me/", { headers: getHeaders() })
     .then((res) => {
+      localStorage.setItem("userCurrency", res.data.user_profile.currency);
       dispatch({ type: Types.AUTH_LOADING, payload: false });
       dispatch({ type: Types.USER_LOGGED_IN, payload: res.data });
     })

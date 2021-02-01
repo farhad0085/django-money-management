@@ -5,7 +5,11 @@ const initialState = {
   logoutErrors: {},
   loginErrorMessage: "",
   loading: false,
-  user: {},
+  user: {
+      user_profile: {
+          currency: localStorage.getItem('userCurrency')
+      }
+  },
 };
 
 function authReducer(state = initialState, action) {
